@@ -62,6 +62,13 @@ class MenuButtonActions {
   setFocusToMenuitem(newMenuitem) {
     this.menuitemNodes.forEach(function (item) {
 // TOUFIC'S COMMENT: Placeholder for the roving tabindex logic  ;)
+      if(item === newMenuitem) {
+        item.tabIndex = 0;
+        item.focus();
+      }else {
+        item.tabIndex = -1;
+      }
+
     });
   }
 
@@ -146,7 +153,8 @@ class MenuButtonActions {
 
   openPopup() {
     this.menuNode.style.display = 'block';
-    this.buttonNode.setAttribute('aria-expanded', 'true');
+    this.buttonNode.setAttribute('aria-expanded', 'true');    
+  
   }
 
   closePopup() {
@@ -229,6 +237,8 @@ class MenuButtonActions {
     var tgt = event.currentTarget,
       key = event.key,
       flag = false;
+
+    console.log(event.key);
 
     function isPrintableCharacter(str) {
       return str.length === 1 && str.match(/\S/);
